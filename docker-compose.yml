@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: .
+    image: nombre-de-la-imagen # Reemplaza con el nombre de tu imagen de la aplicación Java
+    ports:
+      - "8080:8080" # Mapea el puerto de la aplicación Java al puerto 8080 del sistema anfitrión
+    depends_on:
+      - db # Espera a que el servicio de la base de datos esté en funcionamiento antes de iniciar la aplicación
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: tu-contraseña-root
+      MYSQL_DATABASE: nombre-de-la-base-de-datos
+    ports:
+      - "3307:3306" # Mapea el puerto de MySQL al puerto 3306 del sistema anfitrión
+    restart: always
